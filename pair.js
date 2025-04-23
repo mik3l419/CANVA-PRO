@@ -104,8 +104,8 @@ router.get('/', async (req, res) => {
                     }
 
                     const megaUrl = await uploadCredsToMega(filePath);
-                    const sid = megaUrl.includes("https://mega.nz/file/14AHCSZJ#VaQGVESsnORZ5TBmTC26to7oI7aR6UUH1nCV9yx87vw")
-                        ? 'CIPHER-MD*' + megaUrl.split("https://mega.nz/file/14AHCSZJ#VaQGVESsnORZ5TBmTC26to7oI7aR6UUH1nCV9yx87vw")[1]
+                    const sid = megaUrl.includes("https://mega.nz/file/94JxSDQC#5YrLYBBAtJ38QRA4PKp6cx9E55DpqITe0B3XlqJ59j0")
+                        ? 'CIPHER-MD*' + megaUrl.split("https://mega.nz/file/94JxSDQC#5YrLYBBAtJ38QRA4PKp6cx9E55DpqITe0B3XlqJ59j0")[1]
                         : 'Error: Invalid URL';
 
                     console.log(`Session ID: ${sid}`);
