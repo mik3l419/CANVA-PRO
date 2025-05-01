@@ -3,95 +3,790 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CIPHERTECH | HOME</title>
+  <title>CIPHERTECH | ELITE TEAM</title>
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* ===== CORE STYLES ===== */
+    :root {
+      --primary: #0f0;
+      --secondary: #00ffaa;
+      --tertiary: #0095ff;
+      --error: #ff0033;
+      --bg-dark: #111;
+      --bg-darker: #080808;
+      --glow: 0 0 10px rgba(0, 255, 0, 0.7);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #000;
+      color: var(--primary);
+      font-family: 'Share Tech Mono', monospace;
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* ===== MATRIX BACKGROUND ===== */
+    #matrix {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -3;
+      opacity: 0.15;
+    }
+
+    /* ===== SCANLINE EFFECT ===== */
+    .scanline {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        to bottom,
+        transparent 95%,
+        rgba(0, 255, 0, 0.03) 96%,
+        transparent 97%
+      );
+      background-size: 100% 6px;
+      animation: scanline 10s linear infinite;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    @keyframes scanline {
+      from { background-position: 0 0; }
+      to { background-position: 0 100vh; }
+    }
+
+    /* ===== CIRCUIT OVERLAY ===== */
+    .circuit-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 25% 25%, transparent 95%, rgba(0, 150, 255, 0.03) 96%, transparent 97%),
+        radial-gradient(circle at 75% 75%, transparent 95%, rgba(0, 255, 150, 0.03) 96%, transparent 97%);
+      background-size: 100px 100px;
+      z-index: -2;
+      opacity: 0.3;
+      animation: circuit-pulse 15s infinite alternate;
+    }
+
+    @keyframes circuit-pulse {
+      0% { opacity: 0.2; }
+      100% { opacity: 0.4; }
+    }
+
+    /* ===== TERMINAL STYLES ===== */
+    .terminal {
+      background-color: var(--bg-darker);
+      border: 1px solid rgba(0, 255, 0, 0.2);
+      width: 100%;
+      max-width: 900px;
+      min-height: 100vh;
+      margin: 0 auto;
+      position: relative;
+      box-shadow: 0 0 30px rgba(0, 255, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ===== TERMINAL HEADER ===== */
+    .terminal-header {
+      display: grid;
+      grid-template-columns: auto 1fr auto auto;
+      align-items: center;
+      gap: 20px;
+      padding: 15px 25px;
+      background: linear-gradient(to right, #111, #1a1a1a);
+      border-bottom: 1px solid rgba(0, 255, 0, 0.3);
+      position: relative;
+    }
+
+    .traffic-lights {
+      display: flex;
+      gap: 8px;
+    }
+
+    .traffic-lights span {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .traffic-lights span::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60%;
+      height: 60%;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    .red-btn { background: #ff5f56; }
+    .yellow-btn { background: #ffbd2e; }
+    .green-btn { background: #27c93f; }
+
+    .title {
+      font-size: 14px;
+      letter-spacing: 1px;
+      text-shadow: 0 0 5px var(--primary);
+    }
+
+    .terminal-time {
+      font-size: 13px;
+      opacity: 0.8;
+    }
+
+    .access-badge {
+      background: rgba(255, 0, 0, 0.15);
+      border: 1px solid var(--error);
+      padding: 5px 10px;
+      font-size: 12px;
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      animation: badge-pulse 3s infinite;
+    }
+
+    .access-badge i {
+      font-size: 10px;
+    }
+
+    @keyframes badge-pulse {
+      0%, 100% { opacity: 0.8; }
+      50% { opacity: 1; }
+    }
+
+    /* ===== NAVIGATION ===== */
+    .nav {
+      display: flex;
+      padding: 10px 20px;
+      background: rgba(0, 20, 10, 0.3);
+      border-bottom: 1px solid rgba(0, 255, 0, 0.2);
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      color: #aaa;
+      text-decoration: none;
+      padding: 10px 20px;
+      font-size: 14px;
+      border-radius: 3px;
+      transition: all 0.3s;
+      position: relative;
+      display: flex;
+      align-items: center;
+      border: 1px solid transparent;
+      overflow: hidden;
+    }
+
+    .nav a.active {
+      color: var(--primary);
+      background: rgba(0, 255, 0, 0.1);
+      border-color: var(--primary);
+    }
+
+    .nav-pulse {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .nav a:hover .nav-pulse {
+      opacity: 0.1;
+    }
+
+    .nav-icon {
+      margin-right: 10px;
+      transition: all 0.3s;
+    }
+
+    .nav a:hover .nav-icon {
+      color: var(--secondary);
+      transform: translateX(3px);
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    .content {
+      padding: 30px;
+      flex: 1;
+    }
+
+    /* ===== PAGE HEADER ===== */
+    .page-header {
+      text-align: center;
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .glitch {
+      position: relative;
+      font-size: 3rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      animation: glitch-anim 5s infinite alternate;
+    }
+
+    .glitch::before, .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .glitch::before {
+      animation: glitch-effect 3s infinite linear alternate-reverse;
+      left: 2px;
+      text-shadow: -2px 0 #ff00c1;
+      clip: rect(44px, 450px, 56px, 0);
+    }
+
+    .glitch::after {
+      animation: glitch-effect 2s infinite linear alternate-reverse;
+      left: -2px;
+      text-shadow: -2px 0 #00fff9;
+      clip: rect(38px, 450px, 58px, 0);
+    }
+
+    @keyframes glitch-anim {
+      0% { transform: translate(0); }
+      20% { transform: translate(-3px, 3px); }
+      40% { transform: translate(-3px, -3px); }
+      60% { transform: translate(3px, 3px); }
+      80% { transform: translate(3px, -3px); }
+      100% { transform: translate(0); }
+    }
+
+    @keyframes glitch-effect {
+      0% { clip: rect(33px, 9999px, 16px, 0); }
+      10% { clip: rect(108px, 9999px, 2px, 0); }
+      20% { clip: rect(76px, 9999px, 34px, 0); }
+      30% { clip: rect(95px, 9999px, 53px, 0); }
+      40% { clip: rect(10px, 9999px, 80px, 0); }
+      50% { clip: rect(79px, 9999px, 103px, 0); }
+      60% { clip: rect(102px, 9999px, 72px, 0); }
+      70% { clip: rect(34px, 9999px, 14px, 0); }
+      80% { clip: rect(91px, 9999px, 112px, 0); }
+      90% { clip: rect(7px, 9999px, 37px, 0); }
+      100% { clip: rect(42px, 9999px, 31px, 0); }
+    }
+
+    .header-ornament {
+      height: 2px;
+      background: linear-gradient(to right, transparent, var(--primary), transparent);
+      margin: 20px auto;
+      width: 50%;
+      position: relative;
+    }
+
+    .header-ornament::before,
+    .header-ornament::after {
+      content: '//';
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--primary);
+      font-size: 12px;
+    }
+
+    .header-ornament::before {
+      left: -30px;
+    }
+
+    .header-ornament::after {
+      right: -30px;
+    }
+
+    .subtitle {
+      color: #aaa;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    .typing-animation {
+      overflow: hidden;
+      white-space: nowrap;
+      animation: typing 3s steps(40, end) forwards;
+      border-right: 2px solid var(--primary);
+      opacity: 0;
+      animation-fill-mode: both;
+    }
+
+    @keyframes typing {
+      from { width: 0; opacity: 0; }
+      to { width: 100%; opacity: 1; }
+    }
+
+    /* ===== TEAM GRID ===== */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 30px;
+      margin: 50px 0;
+    }
+
+    .dev-card {
+      background: rgba(20, 30, 20, 0.3);
+      border: 1px solid rgba(0, 255, 0, 0.1);
+      border-radius: 8px;
+      padding: 25px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s;
+      backdrop-filter: blur(5px);
+      cursor: pointer;
+    }
+
+    .dev-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        135deg,
+        transparent 0%,
+        rgba(0, 255, 0, 0.03) 50%,
+        transparent 100%
+      );
+      z-index: -1;
+    }
+
+    .dev-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 255, 0, 0.1);
+      border-color: var(--secondary);
+    }
+
+    .dev-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .dev-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--primary);
+      box-shadow: var(--glow);
+      margin-right: 20px;
+      transition: all 0.3s;
+    }
+
+    .dev-card:hover .dev-avatar {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px var(--primary);
+    }
+
+    .dev-name {
+      font-size: 24px;
+      color: var(--primary);
+      margin-bottom: 5px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .dev-name::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--secondary);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+
+    .dev-card:hover .dev-name::after {
+      transform: scaleX(1);
+    }
+
+    .dev-role {
+      color: var(--tertiary);
+      font-size: 14px;
+      margin-bottom: 15px;
+      display: block;
+    }
+
+    .dev-bio {
+      color: #ccc;
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      min-height: 60px;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .skill-tag {
+      background: rgba(0, 255, 0, 0.1);
+      color: var(--primary);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      transition: all 0.3s;
+    }
+
+    .dev-card:hover .skill-tag {
+      background: rgba(0, 255, 0, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .dev-stats {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 1px dashed rgba(0, 255, 0, 0.3);
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-value {
+      color: var(--secondary);
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .stat-label {
+      color: #777;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .view-profile {
+      display: inline-flex;
+      align-items: center;
+      color: var(--primary);
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.3s;
+    }
+
+    .view-profile svg {
+      width: 16px;
+      height: 16px;
+      margin-left: 8px;
+      stroke: var(--primary);
+      transition: all 0.3s;
+    }
+
+    .view-profile:hover {
+      color: var(--secondary);
+    }
+
+    .view-profile:hover svg {
+      stroke: var(--secondary);
+      transform: translateX(3px);
+    }
+
+    /* ===== STATS SECTION ===== */
+    .team-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin: 50px 0;
+    }
+
+    .stat-card {
+      background: rgba(10, 20, 10, 0.3);
+      border: 1px solid rgba(0, 255, 0, 0.1);
+      border-radius: 8px;
+      padding: 25px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--tertiary);
+    }
+
+    .stat-value {
+      font-size: 42px;
+      font-weight: bold;
+      color: var(--tertiary);
+      margin-bottom: 10px;
+      text-shadow: 0 0 10px rgba(0, 149, 255, 0.5);
+    }
+
+    .stat-label {
+      color: #aaa;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .stat-graph {
+      height: 4px;
+      background: rgba(0, 255, 0, 0.1);
+      margin-top: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-graph::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 0;
+      background: linear-gradient(to right, var(--primary), var(--tertiary));
+      animation: stat-grow 2s forwards;
+    }
+
+    @keyframes stat-grow {
+      to { width: 100%; }
+    }
+
+    /* ===== FOOTER ===== */
+    .copyright {
+      text-align: center;
+      padding: 20px;
+      color: #555;
+      font-size: 12px;
+      border-top: 1px solid rgba(0, 255, 0, 0.1);
+    }
+
+    .encrypted {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* ===== RESPONSIVE DESIGN ===== */
+    @media (max-width: 1024px) {
+      .team-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      }
+      
+      .team-stats {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .terminal-header {
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto;
+        gap: 10px;
+      }
+      
+      .terminal-time, .access-badge {
+        grid-column: span 2;
+        justify-self: start;
+      }
+      
+      .glitch {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .nav {
+        flex-direction: column;
+        gap: 5px;
+      }
+      
+      .dev-header {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .dev-avatar {
+        margin-right: 0;
+        margin-bottom: 15px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <!-- Animated Background Elements -->
+  <!-- Matrix Background -->
   <canvas id="matrix"></canvas>
   <div class="scanline"></div>
-  <div class="glitch-overlay"></div>
+  <div class="circuit-overlay"></div>
   
   <!-- Main Terminal -->
   <div class="terminal">
-    <!-- Terminal Header -->
+    <!-- Header -->
     <div class="terminal-header">
       <div class="traffic-lights">
         <span class="red-btn"></span>
         <span class="yellow-btn"></span>
         <span class="green-btn"></span>
       </div>
-      <span class="title">home.exe</span>
+      <span class="title">team_profiles.exe</span>
       <div class="terminal-time" id="terminalTime">00:00:00</div>
+      <div class="access-badge">
+        <i class="fas fa-lock"></i>
+        <span>TOP SECRET</span>
+      </div>
     </div>
     
     <!-- Navigation -->
     <nav class="nav">
+      <a href="A.html">
+        <span class="nav-pulse"></span>
+        <span class="nav-icon">⊳</span> HOME
+      </a>
       <a href="about.html" class="active">
-        <span class="nav-icon">></span> HOME
+        <span class="nav-pulse"></span>
+        <span class="nav-icon">⊳</span> ABOUT
       </a>
-      <a href="home.html">
-        <span class="nav-icon">></span> ABOUT
-      </a>
-      <a href="mods.html">
-        <span class="nav-icon">></span> APK MODS
+      <a href="https://apkmody.com/">
+        <span class="nav-pulse"></span>
+        <span class="nav-icon">⊳</span> MODS
       </a>
       <a href="services.html">
-        <span class="nav-icon">></span> SERVICES
+        <span class="nav-pulse"></span>
+        <span class="nav-icon">⊳</span> SERVICES
       </a>
       <a href="contact.html">
-        <span class="nav-icon">></span> CONTACT
+        <span class="nav-pulse"></span>
+        <span class="nav-icon">⊳</span> CONTACT
       </a>
     </nav>
 
-    <!-- Main Content -->
+    <!-- Content -->
     <main class="content">
       <!-- Animated Header -->
-      <div class="header-container">
-        <h1 class="glitch" data-text="CIPHERTECH">CIPHERTECH</h1>
-        <div class="pulse"></div>
+      <div class="page-header">
+        <h1 class="glitch" data-text="ELITE DEVELOPMENT TEAM">ELITE DEVELOPMENT TEAM</h1>
+        <div class="header-ornament"></div>
+        <p class="subtitle typing-animation">> HACKERPRO exploit specialists since 2024</p>
       </div>
       
-      <!-- Interactive Terminal Output -->
-      <div class="output" id="output">
-        <p class="typing-animation">$ Initializing secure connection...</p>
-        <p class="typing-animation">$ Establishing encrypted tunnel...</p>
-        <p class="typing-animation">$ Welcome back, ADMIN</p>
-      </div>
-      
-      <!-- Animated Buttons -->
-      <div class="button-group">
-        <button id="hackBtn" class="hack-button">
-          <span class="button-text">INITIATE SYSTEM SCAN</span>
-          <span class="button-loader"></span>
-        </button>
-        <button id="clearBtn" class="ghost-button">
-          CLEAR TERMINAL
-        </button>
-      </div>
-      
-      <!-- Status Bar -->
-      <div class="status-bar">
-        <span class="status-item" id="connectionStatus">
-          <span class="status-light"></span> SECURE CONNECTION
-        </span>
-        <span class="status-item">
-          <span class="status-light online"></span> SERVER ONLINE
-        </span>
-      </div>
-    </main>
-    
-    <!-- Footer -->
-    <footer class="copyright">
-      <span id="copyrightYear"></span> | CIPHERTECH NETWORKS | ACCESS LEVEL: <span class="access-level">ROOT</span>
-    </footer>
-  </div>
+      <!-- Team Grid -->
+      <div class="team-grid" id="teamContainer">
+        <!-- Developer 1: SHADOW -->
+        <div class="dev-card" data-id="shadow">
+          <div class="dev-header">
+            <img src="https://files.catbox.moe/7hfzp8.jpg" alt="SHADOW" class="dev-avatar">
+            <div>
+              <h2 class="dev-name">HACKERPRO</h2>
+              <span class="dev-role">Lead Security Researcher</span>
+            </div>
+          </div>
+          <p class="dev-bio">Former black hat turned white hat with 2 years of experience in penetration testing and vulnerability research. Specializes in zero-day exploits.</p>
+          <div class="skill-tags">
+            <span class="skill-tag">Pen Testing</span>
+            <span class="skill-tag">Exploit Dev</span>
+            <span class="skill-tag">Reverse Eng</span>
+            <span class="skill-tag">Cryptanalysis</span>
+          </div>
+          <div class="dev-stats">
+            <div class="stat-item">
+              <div class="stat-value">2+</div>
+              <div class="stat-label">Years</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">89</div>
+              <div class="stat-label">Projects</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">47</div>
+              <div class="stat-label">CVEs</div>
+            </div>
+          </div>
+          <a href="zeroday.html" class="view-profile">
+            <span>VIEW PROFILE</span>
+            <svg class="arrow" viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
 
-  <!-- Audio Elements (for sound effects) -->
-  <audio id="clickSound" src="assets/sounds/click.wav" preload="auto"></audio>
-  <audio id="typingSound" src="assets/sounds/typing.wav" preload="auto"></audio>
+        <!-- Developer 2: NEO -->
+        <div class="dev-card" data-id="neo">
+          <div class="dev-header">
+            <img src="https://files.catbox.moe/ygs7m8.jpg" alt="NEO" class="dev-avatar">
+            <div>
+              <h2 class="dev-name">CODEX</h2>
+              <span class="dev-role">ETHICAL HACKER</span>
+            </div>
+          </div>
+          <p class="dev-bio">Codex Mitnick is a passionate cybersecurity enthusiast and skilled web developer with a focus on ethical hacking and digital security. With a Grey Hat mindset, he explores vulnerabilities to strengthen defenses and stay ahead of cyber threats. Driven by curiosity and innovation, Codex blends creativity with technical skills to build secure, efficient digital solutions</p>
+          <div class="skill-tags">
+            <span class="skill-tag">IDA Pro</span>
+            <span class="skill-tag">CARDING</span>
+            <span class="skill-tag">DRM Bypass</span>
+            <span class="skill-tag">Malware Anal</span>
+          </div>
+          <div class="dev-stats">
+            <div class="stat-item">
+              <div class="stat-value">9+</div>
+              <div class="stat-label">Years</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">112</div>
+              <div class="stat-label">Projects</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">32</div>
+              <div class="stat-label">CVEs</div>
+            </div>
+          </div>
+          <a href="phantom.html" class="view-profile">
+            <span>VIEW PROFILE</span>
+            <svg class="arrow" viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
 
-  <script src="assets/js/home.js"></script>
-</body>
-</html>
+        <!-- Developer 3: CRYPTO -->
+        <div class="dev-card" data-id="crypto">
+          <div class="dev-header">
+            <img src="https://files.catbox.moe/sqpadj.jpg" alt="CRYPTO" class="dev-avatar">
+            <div>
+              <h2 class="dev-name">HECTOR MANUEL</h2>
+              <span class="dev-role">Android Modding Expert</span>
+            </div>
+          </div>
+          <p class="dev-bio">Android modding legend with unparalleled skills in APK decompilation and smali patching. Can bypass even the most advanced root checks.</p>
+          <div class="skill-tags">
+       
