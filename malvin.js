@@ -8,11 +8,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Serve static files from the 'pair' directory
-app.use(express.static(path.join(__dirname, 'pair')));
+app.use(express.static(path.join(__dirname, 'pair.html')));
 
 // Route for the main pair.html file
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'pair', 'pair.html'));
+    res.sendFile(path.join(__dirname, 'pair.html'));
 });
 
 // Handle 404 errors
