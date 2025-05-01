@@ -3,6 +3,107 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CIPHERTECH | HOME</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="home.css">
+</head>
+<body>
+  <!-- Animated Background Elements -->
+  <canvas id="matrix"></canvas>
+  <div class="scanline"></div>
+  <div class="glitch-overlay"></div>
+  
+  <!-- Main Terminal -->
+  <div class="terminal">
+    <!-- Terminal Header -->
+    <div class="terminal-header">
+      <div class="traffic-lights">
+        <span class="red-btn"></span>
+        <span class="yellow-btn"></span>
+        <span class="green-btn"></span>
+      </div>
+      <span class="title">home.exe</span>
+      <div class="terminal-time" id="terminalTime">00:00:00</div>
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="nav">
+      <a href="index.html" class="active">
+        <span class="nav-icon">></span> HOME
+      </a>
+      <a href="about.html">
+        <span class="nav-icon">></span> ABOUT
+      </a>
+      <a href="mods.html">
+        <span class="nav-icon">></span> APK MODS
+      </a>
+      <a href="services.html">
+        <span class="nav-icon">></span> SERVICES
+      </a>
+      <a href="contact.html">
+        <span class="nav-icon">></span> CONTACT
+      </a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="content">
+      <!-- Animated Header -->
+      <div class="header-container">
+        <h1 class="glitch" data-text="CIPHERTECH">CIPHERTECH</h1>
+        <div class="pulse"></div>
+      </div>
+      
+      <!-- Interactive Terminal Output -->
+      <div class="output" id="output">
+        <p class="typing-animation">$ Initializing secure connection...</p>
+        <p class="typing-animation">$ Establishing encrypted tunnel...</p>
+        <p class="typing-animation">$ Welcome back, ADMIN</p>
+      </div>
+      
+      <!-- Animated Buttons -->
+      <div class="button-group">
+        <button id="hackBtn" class="hack-button">
+          <span class="button-text">INITIATE SYSTEM SCAN</span>
+          <span class="button-loader"></span>
+        </button>
+        <button id="clearBtn" class="ghost-button">
+          CLEAR TERMINAL
+        </button>
+      </div>
+      
+      <!-- Status Bar -->
+      <div class="status-bar">
+        <span class="status-item" id="connectionStatus">
+          <span class="status-light"></span> SECURE CONNECTION
+        </span>
+        <span class="status-item">
+          <span class="status-light online"></span> SERVER ONLINE
+        </span>
+      </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="copyright">
+      <span id="copyrightYear"></span> | CIPHERTECH NETWORKS | ACCESS LEVEL: <span class="access-level">ROOT</span>
+    </footer>
+  </div>
+
+  <!-- Audio Elements (for sound effects) -->
+  <audio id="clickSound" src="assets/sounds/click.wav" preload="auto"></audio>
+  <audio id="typingSound" src="assets/sounds/typing.wav" preload="auto"></audio>
+
+  <script src="assets/js/home.js"></script>
+</body>
+</html>
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CIPHERTECH | ELITE TEAM</title>
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -776,26 +877,3 @@
               <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>
           </a>
-        </div>
-
-        <!-- Developer 3: CRYPTO -->
-        <div class="dev-card" data-id="crypto">
-          <div class="dev-header">
-            <img src="https://i.imgur.com/Ln2y4fT.jpg" alt="CRYPTO" class="dev-avatar">
-            <div>
-              <h2 class="dev-name">CRYPTO</h2>
-              <span class="dev-role">Android Modding Expert</span>
-            </div>
-          </div>
-          <p class="dev-bio">Android modding legend with unparalleled skills in APK decompilation and smali patching. Can bypass even the most advanced root checks.</p>
-          <div class="skill-tags">
-            <span class="skill-tag">APK Decomp</span>
-            <span class="skill-tag">Smali Coding</span>
-            <span class="skill-tag">Root Bypass</span>
-            <span class="skill-tag">Obfuscation</span>
-          </div>
-          <div class="dev-stats">
-   
-  <a href="nyx.html" class="view-profile">
-            <span>VIEW PROFILE</span>
-            <svg class="arrow" viewBox="0 0 24 24">
