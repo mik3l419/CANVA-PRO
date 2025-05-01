@@ -1,4 +1,17 @@
 {
+  "name": "any-website",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
+
+
+{
   "description": "session",
   "main": "./malvin.js",
   "type": "commonjs",
@@ -16,7 +29,7 @@
     "@whiskeysockets/baileys": "^6.6.7",
     "awesome-phonenumber": "^2.64.0",
     "body-parser": "^1.20.1",
-    "express": "^4.18.1",
+    "express": "^4.18.2",
     "megajs": "^1.1.0",
     "path": "^0.12.7",
     "phone": "3.1.30",
