@@ -57,7 +57,7 @@
             margin-left: 10px;
         }
         #contact-content {
-            display: none; /* Hidden until CAPTCHA is solved */
+            display: none;
         }
         .contact-method {
             margin: 25px 0;
@@ -78,11 +78,39 @@
             margin-top: 10px;
             min-height: 20px;
         }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .contact-card {
+            background: #111;
+            padding: 15px;
+            border: 1px solid #333;
+            border-radius: 4px;
+            transition: transform 0.3s;
+        }
+        .contact-card:hover {
+            transform: translateY(-3px);
+            border-color: #00ff41;
+        }
+        .contact-icon {
+            width: 24px;
+            height: 24px;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+        #captcha-word {
+            color: #ff00ff;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
     </style>
 </head>
 <body>
     <div class="nav">
-        <a href="index.html">HOME</a>
+        <a href="A.html">HOME</a>
         <a href="about.html">ABOUT</a>
         <a href="services.html">SERVICES</a>
         <a href="contact.html" class="active">CONTACT</a>
@@ -92,45 +120,83 @@
     
     <div class="captcha-box">
         <h3>VERIFY YOUR IDENTITY</h3>
-        <p>Type "HUMAN" to prove you're not a bot:</p>
+        <p>Type "<span id="captcha-word">HUMAN</span>" to prove you're not a bot:</p>
         <input type="text" id="captcha-input" placeholder="Enter the word">
         <button onclick="verifyCaptcha()">SUBMIT</button>
+        <button onclick="generateNewCaptcha()" style="background: #333; color: #00ff41; margin-left: 10px;">New Word</button>
         <p id="captcha-status"></p>
     </div>
 
     <div id="contact-content">
         <div class="contact-method">
             <h3>EMAIL</h3>
-            <p><a href="mailto:contact@hackerpro.net">contact@hackerpro.net</a></p>
+            <p><a href="mailto:richvybs92@gmail.com">richvybs92@gmail.com</a></p>
         </div>
         
         <div class="contact-method">
-            <h3>SOCIAL MEDIA</h3>
-            <p>
-                <a href="https://twitter.com/hackerpro" target="_blank">Twitter</a> | 
-                <a href="https://github.com/hackerpro" target="_blank">GitHub</a> | 
-                <a href="https://t.me/hackerpro" target="_blank">Telegram</a>
-            </p>
+            <h3>CONNECT DIRECTLY</h3>
+            <div class="contact-grid">
+                <a href="https://wa.link/7y0m5t" target="_blank" class="contact-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="contact-icon">
+                    WhatsApp Chat
+                </a>
+                <a href="https://t.me/HACK_ERPRO" target="_blank" class="contact-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" class="contact-icon">
+                    Telegram Channel
+                </a>
+                <a href="https://twitter.com/hackerpro" target="_blank" class="contact-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Logo_of_Twitter.svg" alt="Twitter" class="contact-icon">
+                    Twitter DM
+                </a>
+                <a href="https://github.com/richvybs" target="_blank" class="contact-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub" class="contact-icon">
+                    GitHub Issues
+                </a>
+            </div>
         </div>
     </div>
 
     <script>
+        // List of possible CAPTCHA words
+        const captchaWords = [
+            "HUMAN", "SECURE", "ACCESS", "VERIFY", 
+            "CYBER", "PROVE", "LOGIN", "TRUST",
+            "SAFE", "AUTH", "PASS", "CODE"
+        ];
+        
+        let currentCaptchaWord = "HUMAN";
+        
+        // Generate a new random CAPTCHA word
+        function generateNewCaptcha() {
+            const randomIndex = Math.floor(Math.random() * captchaWords.length);
+            currentCaptchaWord = captchaWords[randomIndex];
+            document.getElementById('captcha-word').textContent = currentCaptchaWord;
+            document.getElementById('captcha-input').value = "";
+            document.getElementById('captcha-status').textContent = "";
+        }
+        
+        // Verify the CAPTCHA input
         function verifyCaptcha() {
-            const input = document.getElementById('captcha-input').value;
+            const input = document.getElementById('captcha-input').value.toUpperCase();
             const status = document.getElementById('captcha-status');
             const content = document.getElementById('contact-content');
             
-            if (input.toUpperCase() === "HUMAN") {
+            if (input === currentCaptchaWord) {
                 status.textContent = "✓ Verification successful - access granted";
                 status.style.color = "#00ff41";
                 content.style.display = "block";
                 document.getElementById('captcha-input').value = "";
+                content.scrollIntoView({ behavior: 'smooth' });
             } else {
                 status.textContent = "✗ Verification failed - try again";
                 status.style.color = "#ff5555";
                 content.style.display = "none";
+                generateNewCaptcha(); // Auto-generate new word on failure
             }
         }
+        
+        // Initialize with a random word
+        generateNewCaptcha();
     </script>
 </body>
 </html>
