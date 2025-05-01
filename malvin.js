@@ -1,31 +1,51 @@
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
 const app = express();
 const PORT = process.env.PORT || 8000;
 
-// Middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// ======================
+// 1. AUTO-DETECT MAIN HTML FILE
+// ======================
+const contentDir = path.join(__dirname, 'pair.html'); // Change 'website' to your folder name
+const htmlFiles = fs.readdirSync(contentDir).filter(file => file.endsWith('.html'));
 
-// Serve static files from the 'pair' directory
-app.use(express.static(path.join(__dirname, 'pair.html')));
+if (htmlFiles.length === 0) {
+  console.error('❌ No HTML files found in folder. Current files:',
+    fs.readdirSync(contentDir));
+  process.exit(1);
+}
 
-// Route for the main pair.html file
+const mainHtmlFile = htmlFiles[0]; // Uses first HTML file found
+
+// ======================
+// 2. SERVE ALL FILES
+// ======================
+app.use(express.static(contentDir)); // Serves CSS/JS/images too
+
+// ======================
+// 3. ROUTES
+// ======================
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'pair.html'));
+  res.sendFile(path.join(contentDir, mainHtmlFile));
 });
 
-// Handle 404 errors
-app.use((req, res) => {
-    res.status(404).send('File not found');
+// Debug route
+app.get('/debug', (req, res) => {
+  res.json({
+    folder: contentDir,
+    detectedHtml: mainHtmlFile,
+    allFiles: fs.readdirSync(contentDir)
+  });
 });
 
-// Start server
+// ======================
+// 4. START SERVER
+// ======================
 app.listen(PORT, () => {
-    console.log(`
-    Deployment Successful!
-    Server running on http://localhost:${PORT}
-    `);
+  console.log(`
+✅ Serving: ${mainHtmlFile}
+📂 From: ${contentDir}
+🌐 Access: http://localhost:${PORT}
+`);
 });
-
-module.exports = app;
