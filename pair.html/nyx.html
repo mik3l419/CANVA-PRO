@@ -2,20 +2,118 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>NYX // PRIVACY HACKER</title>
-    <link rel="stylesheet" href="nyx.css">
+    <title>HECTOR MANUEL // PRIVACY ARCHITECT</title>
+    <style>
+        :root {
+            --green: #00ff41;
+            --bg: #000;
+        }
+        body {
+            background: var(--bg);
+            color: var(--green);
+            font-family: 'Courier New', monospace;
+        }
+        .secure-comms {
+            border: 1px solid var(--green);
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+        .privacy-badge {
+            display: inline-block;
+            background: #002200;
+            padding: 0.2rem 0.5rem;
+            margin: 0.2rem;
+            font-size: 0.8rem;
+        }
+        /* New Email Card Styles */
+        .email-card {
+            background: #001a00;
+            border: 1px solid var(--green);
+            border-radius: 5px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        .email-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+        }
+        .email-icon {
+            min-width: 50px;
+            height: 50px;
+            background: var(--green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .email-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: #000;
+        }
+        .email-content {
+            flex: 1;
+        }
+        .email-address {
+            font-size: 1.1rem;
+            color: var(--green);
+            word-break: break-all;
+            margin-bottom: 0.5rem;
+        }
+        .email-note {
+            font-size: 0.85rem;
+            color: #00aa00;
+        }
+        .email-btn {
+            display: inline-block;
+            background: var(--green);
+            color: #000;
+            padding: 0.5rem 1rem;
+            border-radius: 3px;
+            font-weight: bold;
+            text-decoration: none;
+            margin-top: 0.5rem;
+            transition: all 0.2s;
+        }
+        .email-btn:hover {
+            background: #00cc00;
+        }
+    </style>
 </head>
 <body>
-    <div class="matrix-bg">
-        <div class="profile">
-            <h1 class="hacker-text">NYX</h1>
-            <p>> <span class="label">ROLE:</span> <span class="highlight">PRIVACY HACKER</span></p>
-            <p>> <span class="label">LOCATION:</span> <span class="scramble" data-text="BERLIN SAFEHOUSE">[TOR NODE]</span></p>
-            <p>> <span class="label">SKILLS:</span> <span class="typing" data-text="TOR | SOLIDITY | NODE.JS"></span></p>
-            <p>> <span class="label">CONTACT:</span> <a href="#" class="link">nyx@riseup.net</a></p>
-            <div class="quote">"Encrypt or die trying."</div>
+    <div class="secure-comms">
+        <h1>> HECTOR MANUEL</h1>
+        <p>> Cypherpunk | Tor Developer | Security Auditor</p>
+
+        <h2>> $ verified_projects</h2>
+        <div>
+            <span class="privacy-badge">Signal Protocol</span>
+            <span class="privacy-badge">Monero</span>
+            <span class="privacy-badge">Tails OS</span>
         </div>
+
+        <h2>> $ contact</h2>
+        
+        <!-- Enhanced Email Card -->
+        <div class="email-card">
+            <div class="email-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+            </div>
+            <div class="email-content">
+                <div class="email-address">hector Manuel.net</div>
+                <div class="email-note">End-to-end encrypted ProtonMail</div>
+                <a href="mailto:hubsploit121@gmail.com" class="email-btn">SEND SECURE MESSAGE</a>
+            </div>
+        </div>
+        
+        <p>> ME: HECTOR MANUEL</p>
     </div>
-    <script src="nyx.js"></script>
 </body>
 </html>
