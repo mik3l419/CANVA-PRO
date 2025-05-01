@@ -2,21 +2,126 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>PH4NT0M // MALWARE ANALYST</title>
-    <link rel="stylesheet" href="phantom.css">
+    <title>CODEX MITNICK // MALWARE ANALYST</title>
+    <style>
+        :root {
+            --purple: #9d00ff;
+            --bg: #0d0d0d;
+        }
+        body {
+            background: var(--bg);
+            color: white;
+            font-family: 'Courier New', monospace;
+        }
+        .crt-effect {
+            border: 1px solid var(--purple);
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .tool-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        .tool {
+            background: #1a001a;
+            padding: 0.3rem;
+            text-align: center;
+            border: 1px dashed var(--purple);
+        }
+        /* New Email Card Styles */
+        .email-card {
+            background: #120012;
+            border: 1px solid var(--purple);
+            border-radius: 5px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        .email-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 15px rgba(157, 0, 255, 0.3);
+        }
+        .email-icon {
+            min-width: 50px;
+            height: 50px;
+            background: var(--purple);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .email-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: #000;
+        }
+        .email-content {
+            flex: 1;
+        }
+        .email-address {
+            font-size: 1.1rem;
+            color: var(--purple);
+            word-break: break-all;
+            margin-bottom: 0.5rem;
+        }
+        .email-note {
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+        .email-btn {
+            display: inline-block;
+            background: var(--purple);
+            color: #000;
+            padding: 0.5rem 1rem;
+            border-radius: 3px;
+            font-weight: bold;
+            text-decoration: none;
+            margin-top: 0.5rem;
+            transition: all 0.2s;
+        }
+        .email-btn:hover {
+            background: #8a00e0;
+        }
+    </style>
 </head>
 <body>
-    <div class="crt-screen">
-        <div class="scanlines"></div>
-        <div class="profile">
-            <h1 class="glitch">PH4NT0M</h1>
-            <p>> <span class="label">ROLE:</span> <span class="highlight">REVERSE ENGINEER</span></p>
-            <p>> <span class="label">LOCATION:</span> <span class="scramble" data-text="DARK WEB">[ENCRYPTED]</span></p>
-            <p>> <span class="label">SKILLS:</span> <span class="typing" data-text="GHIDRA | RUST | X86 ASSEMBLY"></span></p>
-            <p>> <span class="label">CONTACT:</span> <a href="#" class="link">phantom@voidmail.io</a></p>
-            <div class="quote">"Every binary has a story."</div>
+    <div class="crt-effect">
+        <h1 style="color:var(--purple)">CODEX MITNICK</h1>
+        <p>> Malware Archaeologist | Blockchain Forensic Analyst</p>
+
+        <h2 style="color:var(--purple)">> $ toolkit</h2>
+        <div class="tool-list">
+            <div class="tool">PHP</div>
+            <div class="tool">CARDING</div>
+            <div class="tool">ENCRYPTION</div>
+            <div class="tool">ETHICAL</div>
         </div>
+
+        <h2 style="color:var(--purple)">> $ contact</h2>
+        
+        <!-- Enhanced Email Card -->
+        <div class="email-card">
+            <div class="email-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+            </div>
+            <div class="email-content">
+                <div class="email-address">codexmitnick@proton.me</div>
+                <div class="email-note">ProtonMail encrypted email preferred</div>
+                <a href="mailto:codexmitnick@proton.me" class="email-btn">SEND ENCRYPTED MAIL</a>
+            </div>
+        </div>
+        
+        <p></p>
     </div>
-    <script src="phantom.js"></script>
 </body>
 </html>
