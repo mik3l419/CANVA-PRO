@@ -1,0 +1,43 @@
+body {
+    background: #000;
+    margin: 0;
+    padding: 0;
+}
+
+.matrix-bg {
+    background: #000;
+    color: #00ff41;
+    font-family: 'Courier New', monospace;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.matrix-bg::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><text x="0" y="10" font-family="Courier New" font-size="5" fill="%2300ff4133">0101010101</text></svg>');
+    opacity: 0.3;
+}
+
+.hacker-text {
+    text-shadow: 0 0 10px #00ff41;
+}
+
+.highlight {
+    color: #ffff00;
+}
+
+.typing {
+    border-right: 2px solid #00ff41;
+    animation: typing 3s steps(30, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}

@@ -1,0 +1,79 @@
+body {
+    background-color: #0a0a0a;
+    color: #00ff41; /* Matrix green */
+    font-family: 'Courier New', monospace;
+    margin: 0;
+    padding: 20px;
+}
+
+.terminal {
+    border: 1px solid #00ff41;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow: 0 0 10px #00ff41;
+}
+
+.header, .footer {
+    color: #00ff41;
+    border-bottom: 1px dashed #00ff41;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.profile {
+    margin-bottom: 30px;
+    border-left: 3px solid #00ff41;
+    padding-left: 15px;
+}
+
+h2 {
+    color: #ff00ff; /* Cyberpunk pink */
+    margin: 0;
+}
+
+.glow {
+    text-shadow: 0 0 5px #00ff41;
+}
+
+.highlight {
+    color: #ffff00; /* Yellow for emphasis */
+}
+
+.link {
+    color: #00ffff; /* Cyan for links */
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+.quote {
+    font-style: italic;
+    color: #ff5555; /* Red for quotes */
+    margin-top: 10px;
+}
+
+/* Animation Classes */
+.blink {
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.scramble {
+    display: inline-block;
+    font-family: monospace;
+}
+
+.typing {
+    display: inline-block;
+    overflow: hidden;
+    border-right: 2px solid #00ff41;
+    white-space: nowrap;
+    animation: typing 3s steps(30, end);
+}

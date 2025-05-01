@@ -1,0 +1,240 @@
+/* Contact Page Specific Styles */
+.contact-list {
+    list-style: none;
+    padding: 0;
+}
+
+.contact-list li {
+    margin: 15px 0;
+    padding: 10px;
+    border-left: 2px solid #00ff41;
+}
+
+.pgp-key {
+    margin-top: 5px;
+}
+
+.small-btn {
+    background: #333;
+    color: #00ff41;
+    border: 1px solid #00ff41;
+    padding: 3px 8px;
+    font-family: 'Courier New', monospace;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.small-btn:hover {
+    background: #00ff41;
+    color: #000;
+}
+
+.secure-form {
+    margin: 20px 0;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #ffff00;
+}
+
+.input-field {
+    width: 100%;
+    background: #111;
+    border: 1px solid #00ff41;
+    color: #00ff41;
+    padding: 10px;
+    font-family: 'Courier New', monospace;
+}
+
+textarea.input-field {
+    resize: vertical;
+}
+
+.alert {
+    color: #ff5555;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}
+
+
+
+
+
+
+/*newcas*/
+
+/* ===== CONTACT PAGE SPECIFIC STYLES ===== */
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+/* Contact Methods Section */
+.contact-methods {
+    background: #0a0a0a;
+    border: 1px solid #00ff41;
+    border-radius: 4px;
+    padding: 1.5rem;
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.1);
+}
+
+.contact-card {
+    background: #111;
+    border-left: 3px solid #00ff41;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.contact-card:hover {
+    transform: translateX(5px);
+}
+
+.contact-header {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.contact-icon {
+    font-size: 1.5rem;
+}
+
+.contact-detail {
+    color: #00ffff;
+    margin: 0.5rem 0;
+    padding: 0.3rem 0;
+    border-bottom: 1px dashed #333;
+}
+
+/* PGP Key Section */
+.pgp-section {
+    margin-top: 1rem;
+}
+
+.pgp-btn {
+    background: #222;
+    color: #00ff41;
+    border: 1px solid #00ff41;
+    padding: 0.5rem 1rem;
+    font-family: 'Courier New', monospace;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.pgp-btn:hover {
+    background: #00ff41;
+    color: #000;
+}
+
+.pgp-key {
+    background: #111;
+    padding: 1rem;
+    margin-top: 0.5rem;
+    border: 1px dashed #444;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    overflow-x: auto;
+}
+
+/* Contact Form Section */
+.contact-form {
+    background: #0a0a0a;
+    border: 1px solid #ff00ff;
+    border-radius: 4px;
+    padding: 1.5rem;
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.1);
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+.form-input {
+    width: 100%;
+    background: #111;
+    border: 1px solid #444;
+    color: #00ff41;
+    padding: 0.8rem;
+    font-family: 'Courier New', monospace;
+    transition: border 0.3s;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #00ff41;
+}
+
+.submit-btn {
+    background: linear-gradient(135deg, #00ff41 0%, #008f11 100%);
+    color: #000;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.submit-btn:hover {
+    box-shadow: 0 0 10px #00ff41;
+}
+
+.btn-loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid #000;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Footer */
+.contact-footer {
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    border-top: 1px dashed #00ff41;
+}
+
+.connection-status {
+    color: #00ff41;
+}
+
+.disclaimer {
+    color: #ff5555;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+/* Animations */
+@keyframes spin {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+}

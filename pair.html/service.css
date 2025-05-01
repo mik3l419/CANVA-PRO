@@ -1,0 +1,127 @@
+body {
+    background: #000;
+    color: #00ff41;
+    font-family: 'Courier New', monospace;
+    margin: 0;
+    padding: 20px;
+}
+
+.terminal {
+    border: 1px solid #00ff41;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow: 0 0 15px #00ff4155;
+}
+
+.header, .footer {
+    border-bottom: 1px dashed #00ff41;
+    padding: 10px 0;
+}
+
+.section {
+    margin: 25px 0;
+}
+
+h2 {
+    color: #ff00ff;
+}
+
+.link {
+    color: #00ffff;
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+/* Input & Button */
+.input-field {
+    background: #111;
+    border: 1px solid #00ff41;
+    color: #00ff41;
+    padding: 10px;
+    font-family: 'Courier New', monospace;
+    width: 250px;
+    margin: 10px 0;
+}
+
+.glow-btn {
+    background: #00ff41;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: 0.3s;
+}
+
+.glow-btn:hover {
+    box-shadow: 0 0 10px #00ff41;
+}
+
+.error {
+    color: #ff5555;
+}
+
+/* Hidden Content */
+.hidden {
+    display: none;
+}
+
+.hackerpro-glitch {
+    animation: glitch 2s infinite;
+    color: #ff00ff;
+}
+
+@keyframes glitch {
+    0% { text-shadow: 0 0 5px #ff00ff; }
+    25% { text-shadow: -2px 0 5px #00ffff, 2px 0 5px #ff00ff; }
+    100% { text-shadow: 0 0 5px #ff00ff; }
+}
+
+.blink {
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+
+/* Navigation Bar Styling */
+.navbar {
+    border-bottom: 1px solid #00ff41;
+    padding: 15px;
+    text-align: center;
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar li {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+.nav-link {
+    color: #00ff41;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-link:hover {
+    text-shadow: 0 0 5px #00ff41;
+}
+
+.nav-link.active {
+    color: #ff00ff;
+    border-bottom: 1px dashed #ff00ff;
+}
