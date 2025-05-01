@@ -2,26 +2,144 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ZER0DAY // SECURITY NINJA</title>
-    <link rel="stylesheet" href="zeroday.css">
+    <title>ZER0DAY // PENETRATION SPECIALIST</title>
+    <style>
+        :root {
+            --red: #ff5555;
+            --bg: #0a0a0a;
+        }
+        body {
+            background: var(--bg);
+            color: white;
+            font-family: 'Courier New', monospace;
+            margin: 0;
+            padding: 0;
+        }
+        .terminal {
+            border: 1px solid var(--red);
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+            box-shadow: 0 0 20px #ff000055;
+        }
+        .glow-red { text-shadow: 0 0 5px var(--red); }
+        .project-card {
+            border-left: 3px solid var(--red);
+            padding: 0.5rem 1rem;
+            margin: 1rem 0;
+        }
+        #crypto-ticker {
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 0.5rem;
+            background: #1a0000;
+        }
+        /* New Email Card Styles */
+        .email-card {
+            background: #1a0000;
+            border: 1px solid var(--red);
+            border-radius: 5px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        .email-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 15px rgba(255, 85, 85, 0.3);
+        }
+        .email-icon {
+            min-width: 50px;
+            height: 50px;
+            background: var(--red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .email-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: #000;
+        }
+        .email-content {
+            flex: 1;
+        }
+        .email-address {
+            font-size: 1.1rem;
+            color: var(--red);
+            word-break: break-all;
+            margin-bottom: 0.5rem;
+        }
+        .email-note {
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+        .email-btn {
+            display: inline-block;
+            background: var(--red);
+            color: #000;
+            padding: 0.5rem 1rem;
+            border-radius: 3px;
+            font-weight: bold;
+            text-decoration: none;
+            margin-top: 0.5rem;
+            transition: all 0.2s;
+        }
+        .email-btn:hover {
+            background: #ff3333;
+        }
+    </style>
 </head>
 <body>
-    <div class="profile-container">
-        <div class="terminal-header">
-            <span class="blink">_</span> root@zeroday:~$ whoami
+    <div class="terminal">
+        <h1 class="glow-red">HACKERPRO</h1>
+        <p>> FRONT END | APT Specialist | Bot Developer </p>/p>
+      
+
+        <h2 class="glow-red">> $ active_projects</h2>
+        <div class="project-card">
+            <h3>VPN Exploit Toolkit (VET)</h3>
+            <p>> CVE-2024-32456 | CVE-2025-32811</p>
         </div>
-        <div class="profile">
-            <h1><span class="red-glitch">ZER0DAY</span></h1>
-            <p>> <span class="label">ROLE:</span> <span class="highlight">ETHICAL HACKER</span></p>
-            <p>> <span class="label">LOCATION:</span> <span class="scramble" data-text="UNDISCLOSED">[REDACTED]</span></p>
-            <p>> <span class="label">SKILLS:</span> <span class="typing" data-text="METASPLOIT | KALI LINUX | PYTHON"></span></p>
-            <p>> <span class="label">CONTACT:</span> <a href="#" class="link">zeroday@shadow.net</a></p>
-            <div class="quote">"If it’s connected, it’s vulnerable."</div>
+
+        <h2 class="glow-red">> $ contact</h2>
+        
+        <!-- Enhanced Email Card -->
+        <div class="email-card">
+            <div class="email-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+            </div>
+            <div class="email-content">
+                <div class="email-address">richvybs92@gmail.com</div>
+                <div class="email-note">Encrypted communications preferred</div>
+                <a href="mailto:richvybs92@gmail.com" class="email-btn">SEND SECURE MAIL</a>
+            </div>
         </div>
-        <div class="terminal-footer">
-            <span class="pulse">[ACCESS GRANTED]</span>
-        </div>
+        
+        <p>> Signal: 🚦 STRONG</p>
     </div>
-    <script src="zeroday.js"></script>
+
+    <script>
+        // Crypto ticker
+        async function fetchCrypto() {
+            const coins = { xmr: 'monero', btc: 'bitcoin', zec: 'zcash' };
+            for (const [id, coin] of Object.entries(coins)) {
+                try {
+                    const res = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${coin}&vs_currencies=usd`);
+                    const data = await res.json();
+                    document.getElementById(`${id}-price`).textContent = `$${data[coin].usd}`;
+                } catch (e) {
+                    console.error(e);
+                }
+            }
+        }
+        fetchCrypto();
+        setInterval(fetchCrypto, 60000);
+    </script>
 </body>
 </html>
