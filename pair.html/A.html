@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CIPHERTECH | HOME</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    /* Base Styles */
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      color: #00ff41;
+      font-family: 'Share Tech Mono', monospace;
+      overflow-x: hidden;
+    }
+    
+    /* Terminal Container */
+    .terminal {
+      width: 90%;
+      max-width: 800px;
+      margin: 2rem auto;
+      border: 1px solid #00ff41;
+      box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+      position: relative;
+    }
+    
+    /* Terminal Header */
+    .terminal-header {
+      background: #001a00;
+      padding: 0.5rem 1rem;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #00ff41;
+    }
+    
+    .traffic-lights {
+      display: flex;
+      gap: 6px;
+    }
+    
+    .traffic-lights span {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    
+    .red-btn { background: #ff5f56; }
+    .yellow-btn { background: #ffbd2e; }
+    .green-btn { background: #27c93f; }
+    
+    .title {
+      margin-left: 1rem;
+      flex-grow: 1;
+    }
+    
+    /* Terminal Content */
+    .content {
+      padding: 1.5rem;
+      min-height: 300px;
+    }
+    
+    /* Typing Animation */
+    .typing-animation {
+      border-right: 2px solid #00ff41;
+      white-space: nowrap;
+      overflow: hidden;
+      margin: 0;
+      animation: 
+        typing 3.5s steps(40, end),
+        blink-caret 0.75s step-end infinite;
+    }
+    
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: #00ff41; }
+    }
+    
+    /* Buttons */
+    .button-group {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    
+    .hack-button {
+      background: #00ff41;
+      color: #000;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-weight: bold;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+    
+    .hack-button:hover {
+      box-shadow: 0 0 15px #00ff41;
+    }
+    
+    .button-loader {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 16px;
+      height: 16px;
+      border: 2px solid #000;
+      border-top-color: transparent;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      animation: spin 1s linear infinite;
+      opacity: 0;
+    }
+    
+    .ghost-button {
+      background: transparent;
+      color: #00ff41;
+      border: 1px solid #00ff41;
+      padding: 0.8rem 1.5rem;
+      font-family: 'Share Tech Mono', monospace;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .ghost-button:hover {
+      background: rgba(0, 255, 65, 0.1);
+    }
+    
+    @keyframes spin {
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+    
+    /* Status Bar */
+    .status-bar {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px dashed #00ff41;
+    }
+    
+    .status-light {
+      width: 10px;
+      height: 10px;
+      background: #ff5555;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 6px;
+    }
+    
+    .status-light.online {
+      background: #00ff41;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
+    
+    /* Footer */
+    .copyright {
+      padding: 0.8rem 1rem;
+      background: #001a00;
+      border-top: 1px solid #00ff41;
+      font-size: 0.8rem;
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .access-level {
+      color: #ff00ff;
+    }
+    
+    /* Glitch Effect */
+    .glitch {
+      position: relative;
+      color: #00ff41;
+      font-size: 3rem;
+      text-transform: uppercase;
+      margin: 0;
+    }
+    
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .glitch::before {
+      left: 2px;
+      text-shadow: -2px 0 #ff00ff;
+      clip: rect(44px, 450px, 56px, 0);
+      animation: glitch-anim-1 2s infinite linear alternate-reverse;
+    }
+    
+    .glitch::after {
+      left: -2px;
+      text-shadow: -2px 0 #00ffff;
+      clip: rect(44px, 450px, 56px, 0);
+      animation: glitch-anim-2 2s infinite linear alternate-reverse;
+    }
+    
+    @keyframes glitch-anim-1 {
+      0% { clip: rect(61px, 9999px, 52px, 0); }
+      20% { clip: rect(33px, 9999px, 14px, 0); }
+      40% { clip: rect(43px, 9999px, 37px, 0); }
+      60% { clip: rect(23px, 9999px, 66px, 0); }
+      80% { clip: rect(54px, 9999px, 48px, 0); }
+      100% { clip: rect(9px, 9999px, 98px, 0); }
+    }
+    
+    @keyframes glitch-anim-2 {
+      0% { clip: rect(25px, 9999px, 99px, 0); }
+      20% { clip: rect(3px, 9999px, 6px, 0); }
+      40% { clip: rect(33px, 9999px, 86px, 0); }
+      60% { clip: rect(92px, 9999px, 98px, 0); }
+      80% { clip: rect(73px, 9999px, 92px, 0); }
+      100% { clip: rect(62px, 9999px, 54px, 0); }
+    }
+    
+    /* Output Container */
+    .output {
+      margin: 1.5rem 0;
+      min-height: 100px;
+    }
+    
+    /* Navigation */
+     .nav {
+      display: flex;
+      gap: 1rem; /* Reduced from 1.5rem to fit better */
+      padding: 0.8rem 1rem;
+      background: #001a00;
+      border-bottom: 1px solid #00ff41;
+      flex-wrap: wrap; /* Allows items to wrap if needed */
+      justify-content: center; /* Centers items when wrapped */
+    }
+    
+    .nav a {
+      color: #00ff41;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      white-space: nowrap; /* Prevents text from breaking */
+      padding: 0.2rem 0.5rem; /* Added some padding */
+    }
+  </style>
+</head>
+<body>
+  <!-- Main Terminal -->
+  <div class="terminal">
+    <!-- Terminal Header -->
+    <div class="terminal-header">
+      <div class="traffic-lights">
+        <span class="red-btn"></span>
+        <span class="yellow-btn"></span>
+        <span class="green-btn"></span>
+      </div>
+      <span class="title">home.exe</span>
+      <div class="terminal-time" id="terminalTime">00:00:00</div>
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="nav">
+      <a href="A.html" class="active">
+        <span class="nav-icon"></span> HOME
+      </a>
+      <a href="about.html">
+        <span class="nav-icon"></span> ABOUT
+      </a>
+      <a href="mods.html">
+        <span class="nav-icon"></span> APK MODS
+      </a>
+      <a href="services.html">
+        <span class="nav-icon"></span> SERVICES
+      </a>
+      <a href="contact.html">
+        <span class="nav-icon"></span> CONTACT
+      </a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="content">
+      <!-- Animated Header -->
+      <div class="header-container">
+        <h1 class="glitch" data-text="CIPHERTECH">CIPHERTECH</h1>
+      </div>
+      
+      <!-- Interactive Terminal Output -->
+      <div class="output" id="output">
+        <p class="typing-animation">$ Initializing secure connection...</p>
+        <p class="typing-animation">$ Establishing encrypted tunnel...</p>
+        <p class="typing-animation">$ Welcome back, ADMIN</p>
+      </div>
+      
+      <!-- Animated Buttons -->
+      <div class="button-group">
+        <button id="hackBtn" class="hack-button">
+          <span class="button-text">INITIATE SYSTEM SCAN</span>
+          <span class="button-loader"></span>
+        </button>
+        <button id="clearBtn" class="ghost-button">
+          CLEAR TERMINAL
+        </button>
+      </div>
+      
+      <!-- Status Bar -->
+      <div class="status-bar">
+        <span class="status-item" id="connectionStatus">
+          <span class="status-light"></span> SECURE CONNECTION
+        </span>
+        <span class="status-item">
+          <span class="status-light online"></span> SERVER ONLINE
+        </span>
+      </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="copyright">
+      <span id="copyrightYear"></span> | CIPHERTECH NETWORKS | ACCESS LEVEL: <span class="access-level">ROOT</span>
+    </footer>
+  </div>
+
+  <script>
+    // System Scan Functionality
+    document.getElementById('hackBtn').addEventListener('click', function() {
+      const btn = this;
+      const output = document.getElementById('output');
+      const loader = btn.querySelector('.button-loader');
+      const btnText = btn.querySelector('.button-text');
+      
+      // Show loading state
+      btnText.textContent = "SCANNING SYSTEMS";
+      loader.style.opacity = '1';
+      btn.disabled = true;
+      
+      // Clear previous output
+      output.innerHTML = '';
+      
+      // System scan messages
+      const messages = [
+        "$ Initiating deep system scan...",
+        "$ Analyzing network topology...",
+        "$ Bypassing firewall protections...",
+        "$ Accessing secure subsystems...",
+        "$ Locating vulnerabilities...",
+        "$ Compiling threat assessment...",
+        "$ Scan complete - 3 critical vulnerabilities found"
+      ];
+      
+      // Display messages with typing animation
+      let delay = 0;
+      messages.forEach((msg, index) => {
+        setTimeout(() => {
+          const p = document.createElement('p');
+          p.className = 'typing-animation';
+          p.textContent = msg;
+          output.appendChild(p);
+          
+          // Scroll to bottom
+          output.scrollTop = output.scrollHeight;
+          
+          // Final message
+          if (index === messages.length - 1) {
+            setTimeout(() => {
+              btnText.textContent = "SCAN COMPLETE";
+              loader.style.opacity = '0';
+              btn.disabled = false;
+              
+              // Reset button after delay
+              setTimeout(() => {
+                btnText.textContent = "INITIATE SYSTEM SCAN";
+              }, 2000);
+            }, 1000);
+          }
+        }, delay);
+        
+        delay += 2000; // 2 second delay between messages
+      });
+    });
+    
+    // Clear Terminal Functionality
+    document.getElementById('clearBtn').addEventListener('click', function() {
+      document.getElementById('output').innerHTML = '';
+    });
+    
+    // Update Copyright Year
+    document.getElementById('copyrightYear').textContent = new Date().getFullYear();
+    
+    // Update Terminal Time
+    function updateTerminalTime() {
+      const now = new Date();
+      const timeString = now.toLocaleTimeString('en-US', {
+        hour12: false,
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      });
+      document.getElementById('terminalTime').textContent = timeString;
+    }
+    
+    setInterval(updateTerminalTime, 1000);
+    updateTerminalTime();
+  </script>
+</body>
+</html>
