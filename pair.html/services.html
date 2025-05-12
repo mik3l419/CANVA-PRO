@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HACKERPRO // SECURE SERVICES</title>
-    <link rel="stylesheet" href="servic.css">
     <style>
-        /* Basic styling (you can move this to service.css) */
         body {
             background-color: #0a0a0a;
             color: #00ff00;
@@ -97,7 +95,7 @@
         }
         
         .hidden {
-            display: none;
+            display: none !important;
         }
         
         .footer {
@@ -214,56 +212,83 @@
             const hiddenContent = document.getElementById('hidden-content');
             const status = document.getElementById('status');
             
-            verifyBtn.addEventListener('click', function() {
-                // Get and clean the input value
-                const number = whatsappNumber.value.trim();
+            // WhatsApp number validation function
+            function isValidWhatsAppNumber(number) {
+                // Basic format validation
+                const whatsappRegex = /^\+[1-9]\d{1,3}[-\s]?\d{6,14}$/;
+                if (!whatsappRegex.test(number)) return false;
                 
-                // Reset previous error
+                // Country code validation (partial list of WhatsApp supported countries)
+                const countryCodes = [
+                    '1',     // US/Canada
+                    '44',    // UK
+                    '91',    // India
+                    '86',    // China
+                    '81',    // Japan
+                    '33',    // France
+                    '49',    // Germany
+                    '7',     // Russia
+                    '92',    // Pakistan
+                    '234',   // Nigeria
+                    '20',    // Egypt
+                    '27',    // South Africa
+                    '55',    // Brazil
+                    '52',    // Mexico
+                    '62',    // Indonesia
+                    '90',    // Turkey
+                    '39',    // Italy
+                    '34',    // Spain
+                    '966',   // Saudi Arabia
+                    '971' ,  // UAE
+                    '233'    // Ghana
+                ];
+                
+                const code = number.match(/^\+\d+/)[0].substring(1);
+                return countryCodes.includes(code);
+            }
+            
+            // Force hidden state on load
+            hiddenContent.classList.add('hidden');
+            status.textContent = 'AWAITING VERIFICATION...';
+            status.classList.add('blink');
+            
+            verifyBtn.addEventListener('click', function() {
+                const number = whatsappNumber.value.trim();
                 errorMsg.textContent = '';
                 
-                // Validate the WhatsApp number
                 if (!number) {
-                    errorMsg.textContent = 'Please enter your WhatsApp number';
+                    errorMsg.textContent = 'ERROR: WhatsApp number required';
                     return;
                 }
                 
-                // Improved WhatsApp number validation regex
-                // This checks for international format with country code
-                const whatsappRegex = /^\+[1-9]\d{1,3}[-\s]?\d{6,14}$/;
-                
-                if (!whatsappRegex.test(number)) {
-                    errorMsg.textContent = 'Please enter a valid WhatsApp number in international format (e.g., +1 234 567 8900)';
+                if (!isValidWhatsAppNumber(number)) {
+                    errorMsg.textContent = 'ERROR: Valid WhatsApp number required with country code and leave space between your country code and your number (e.g., +1 2345678900)';
                     return;
                 }
                 
-                // If validation passes
-                status.textContent = 'VERIFICATION SUCCESSFUL';
+                // Verification passed
+                status.textContent = 'WHATSAPP VERIFIED';
                 status.classList.remove('blink');
                 status.style.color = '#00ff00';
                 hiddenContent.classList.remove('hidden');
-                
-                // Scroll to the hidden content
                 hiddenContent.scrollIntoView({ behavior: 'smooth' });
                 
-                // Store verification in localStorage (optional)
-                localStorage.setItem('whatsappVerified', 'true');
+                // Store verification in sessionStorage
+                sessionStorage.setItem('whatsappVerified', 'true');
             });
             
-            // Check if already verified (optional)
-            if (localStorage.getItem('whatsappVerified') === 'true') {
-                status.textContent = 'VERIFICATION SUCCESSFUL';
+            // Check existing verification
+            if (sessionStorage.getItem('whatsappVerified') === 'true') {
+                status.textContent = 'WHATSAPP VERIFIED';
                 status.classList.remove('blink');
                 status.style.color = '#00ff00';
                 hiddenContent.classList.remove('hidden');
             }
             
-            // Allow pressing Enter key to verify
             whatsappNumber.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    verifyBtn.click();
-                }
+                if (e.key === 'Enter') verifyBtn.click();
             });
         });
     </script>
 </body>
-</html>
+                    </html>
