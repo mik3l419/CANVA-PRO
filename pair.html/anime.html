@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anime Links - Your Gateway to Anime</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <style>
+    /* Custom styles for background and glow effects */
+    body {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+      font-family: 'Arial', sans-serif;
+    }
+    .card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 255, 255, 0.3), 0 0 30px rgba(255, 0, 255, 0.2);
+    }
+    /* Animated gradient background for header */
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .header-bg {
+      background: linear-gradient(45deg, #ff00cc, #3333ff, #00ffcc);
+      background-size: 200% 200%;
+      animation: gradientShift 15s ease infinite;
+    }
+  </style>
+</head>
+<body class="text-white">
+  <!-- Header -->
+  <header class="header-bg py-6 text-center">
+    <h1 class="text-4xl md:text-5xl font-bold tracking-wider">Anime Links Hub</h1>
+    <p class="mt-2 text-lg md:text-xl text-gray-300">Discover the best anime streaming sites with a click!</p>
+  </header>
+
+  <!-- Main Content: Anime Links Grid -->
+  <main class="container mx-auto px-4 py-12">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" role="list" aria-label="Anime site links">
+      <!-- Card 1 -->
+      <div class="card bg-gray-800 rounded-lg p-6 shadow-lg" role="listitem">
+        <h2 class="text-2xl font-semibold text-cyan-400">Crunchyroll</h2>
+        <p class="mt-2 text-gray-300">Stream thousands of anime episodes, including simulcasts and exclusive series.</p>
+        <a href="https://www.crunchyroll.com" target="_blank" rel="noopener noreferrer"
+           class="mt-4 inline-block bg-cyan-500 text-white px-4 py-2 rounded hover:bg-cyan-600 transition-colors"
+           aria-label="Visit Crunchyroll">Visit Site</a>
+      </div>
+      <!-- Card 2 -->
+      <div class="card bg-gray-800 rounded-lg p-6 shadow-lg" role="listitem">
+        <h2 class="text-2xl font-semibold text-pink-400">KissAnime</h2>
+        <p class="mt-2 text-gray-300">Enjoy dubbed and subbed anime with a vast library of classics and new releases.</p>
+        <a href="https://kissanime.ba/" target="_blank" rel="noopener noreferrer"
+           class="mt-4 inline-block bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600 transition-colors"
+           aria-label="Visit KissAnime">Visit Site</a>
+      </div>
+      <!-- Card 3 -->
+      <div class="card bg-gray-800 rounded-lg p-6 shadow-lg" role="listitem">
+        <h2 class="text-2xl font-semibold text-purple-400">AnimeHeaven</h2>
+        <p class="mt-2 text-gray-300">Watch anime hits and simulcasts, tailored for fans in Australia and New Zealand.</p>
+        <a href="https://animeheaven.me/" target="_blank" rel="noopener noreferrer"
+           class="mt-4 inline-block bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600 transition-colors"
+           aria-label="Visit AnimeHeaven">Visit Site</a>
+      </div>
+      <!-- Add more cards as needed -->
+      <div class="card bg-gray-800 rounded-lg p-6 shadow-lg" role="listitem">
+  <h2 class="text-2xl font-semibold text-cyan-400">AnimeSuge</h2>
+  <p class="mt-2 text-gray-300">Animesuge, (Animesugeto, Animesuge.to) is a free streaming anime website that allows you to watch anime online in English subbed and dubbed. Join us and watch anime online for free with ease. Easy access and no registration is required</p>
+  <a href="https://animesugetv.to/" target="_blank" rel="noopener noreferrer"
+     class="mt-4 inline-block bg-cyan-500 text-white px-4 py-2 rounded hover:bg-cyan-600 transition-colors"
+     aria-label="Visit animeSuge">Visit Site</a>
+     
+</div>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" role="list" aria-label="Anime site links">
+  <!-- Existing cards (Crunchyroll, Funimation, HIDIVE) -->
+  <!-- Add new cards -->
+  <div class="card bg-gray-800 rounded-lg p-6 shadow-lg" role="listitem">
+    <h2 class="text-2xl font-semibold text-green-400">AniWave</h2>
+    <p class="mt-2 text-gray-300">Stream exclusive anime series and movies with high-quality subs and dubs.</p>
+    <a href="https://aniwave.uk/" target="_blank" rel="noopener noreferrer"
+       class="mt-4 inline-block bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors"
+       aria-label="Visit  AniWave">Visit Site</a>
+  </div>
+  <div class="card bg-gray-800 rounded-lg p-6 shadow-lg" role="listitem">
+    <h2 class="text-2xl font-semibold text-red-400">AnimeFreak</h2>
+    <p class="mt-2 text-gray-300">Discover anime and manga with personalized recommendations and streaming links.</p>
+    <a href="https://animefreak.biz/" target="_blank" rel="noopener noreferrer"
+       class="mt-4 inline-block bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors"
+       aria-label="Visit AnimeFreak">Visit Site</a>
+  </div>
+  <div class="card bg-gray-800 rounded-lg p-6 shadow-lg" role="listitem">
+    <h2 class="text-2xl font-semibold text-yellow-400">MyAnimeList</h2>
+    <p class="mt-2 text-gray-300">Track and review anime and manga with a global community of fans.</p>
+    <a href="https://myanimelist.net" target="_blank" rel="noopener noreferrer"
+       class="mt-4 inline-block bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition-colors"
+       aria-label="Visit MyAnimeList">Visit Site</a>
+  </div>
+  <div class="card bg-gray-800 rounded-lg p-6 shadow-lg" role="listitem">
+    <h2 class="text-2xl font-semibold text-blue-400">9Anime</h2>
+    <p class="mt-2 text-gray-300">Watch anime online for free with a user-friendly interface.</p>
+    <a href="https://9animetv.to/" target="_blank" rel="noopener noreferrer"
+       class="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
+       aria-label="Visit 9Anime">Visit Site</a>
+  </div>
+  <div class="card bg-gray-800 rounded-lg p-6 shadow-lg" role="listitem">
+    <h2 class="text-2xl font-semibold text-orange-400">HiAnime</h2>
+    <p class="mt-2 text-gray-300">Stream a curated selection of anime series and movies.</p>
+    <a href="https://hianimez.to/" target="_blank" rel="noopener noreferrer"
+       class="mt-4 inline-block bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 transition-colors"
+       aria-label="Visit HiAnime">Visit Site</a>
+  </div>
+</div>
+
+<div class="card bg-gray-800 rounded-lg p-6 shadow-lg" role="listitem">
+  <h2 class="text-2xl font-semibold text-cyan-400">AniWatch</h2>
+  <p class="mt-2 text-gray-300">AniWatch.to is a free site to watch anime and you can even download subbed or dubbed anime in ultra HD quality without any registration or payment. By having only one ads in all kinds, we are trying to make it the safest site for free anime</p>
+  <a href="https://aniwatchtv.to/" target="_blank" rel="noopener noreferrer"
+     class="mt-4 inline-block bg-cyan-500 text-white px-4 py-2 rounded hover:bg-cyan-600 transition-colors"
+     aria-label="Visit AniWatch">Visit Site</a>
+</div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 py-4 text-center">
+    <p class="text-gray-400">&copy; 2025 Anime Links Hub. All rights reserved.</p>
+  </footer>
+
+  <!-- GSAP Animations -->
+  <script>
+    // Animate cards on page load with stagger
+    gsap.from(".card", {
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      stagger: 0.2,
+      ease: "power3.out",
+      delay: 0.5
+    });
+
+    // Animate header text
+    gsap.from("header h1, header p", {
+      opacity: 0,
+      y: -30,
+      duration: 1,
+      stagger: 0.3,
+      ease: "power2.out"
+    });
+
+    // Add hover animation for cards
+    document.querySelectorAll(".card").forEach(card => {
+      card.addEventListener("mouseenter", () => {
+        gsap.to(card, { scale: 1.05, duration: 0.3, ease: "power2.out" });
+      });
+      card.addEventListener("mouseleave", () => {
+        gsap.to(card, { scale: 1, duration: 0.3, ease: "power2.out" });
+      });
+    });
+  </script>
+</body>
+                                                 </html>
