@@ -138,6 +138,19 @@
 
     .steps li {
       margin: 10px 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .copy-icon {
+      margin-left: 10px;
+      cursor: pointer;
+      color: #6b46c1;
+      font-size: 16px;
+    }
+
+    .copy-icon.copied {
+      color: #28a745;
     }
 
     .toggle-mode {
@@ -187,6 +200,14 @@
       border-color: #a0aec0;
       color: #a0aec0;
     }
+
+    body.dark-mode .copy-icon {
+      color: #a0aec0;
+    }
+
+    body.dark-mode .copy-icon.copied {
+      color: #28a745;
+    }
   </style>
 </head>
 <body>
@@ -217,8 +238,8 @@
       <ul>
         <li>1. Visit chatgpt.com and click Log in.</li>
         <li>2. Sign in with the credentials below:</li>
-        <li>Email → oxaamcgn257@oxaam.com</li>
-        <li>Password → oxaam1229962</li>
+        <li>Email → oxaamcgn257@oxaam.com <span class="copy-icon" onclick="copyText(this, 'oxaamcgn257@oxaam.com')">📋</span></li>
+        <li>Password → oxaam1229962 <span class="copy-icon" onclick="copyText(this, 'oxaam1229962')">📋</span></li>
         <li>3. If a verification code is requested, use the link below.</li>
         <li><a href="https://www.oxaam.com/cgcode2.php">https://www.oxaam.com/cgcode2.php</a></li>
       </ul>
@@ -255,6 +276,16 @@
     // Toggle Dark Mode
     function toggleMode() {
       document.body.classList.toggle('dark-mode');
+    }
+
+    // Copy to Clipboard
+    function copyText(element, text) {
+      navigator.clipboard.writeText(text).then(() => {
+        element.classList.add('copied');
+        setTimeout(() => element.classList.remove('copied'), 1000);
+      }).catch(err => {
+        console.error('Failed to copy text: ', err);
+      });
     }
   </script>
 </body>
