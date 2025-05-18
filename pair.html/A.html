@@ -1,424 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8925991696833955"
-     crossorigin="anonymous"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CIPHERTECH | HOME</title>
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <title>CIPHERPREMIUM</title>
   <style>
-    /* Base Styles */
-    body {
+    * {
       margin: 0;
       padding: 0;
-      background-color: #000;
-      color: #00ff41;
-      font-family: 'Share Tech Mono', monospace;
-      overflow-x: hidden;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
     }
-    
-    /* Terminal Container */
-    .terminal {
-      width: 90%;
-      max-width: 800px;
-      margin: 2rem auto;
-      border: 1px solid #00ff41;
-      box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
-      position: relative;
+
+    body {
+      background-color: #f5f7fa;
+      color: #333;
+      transition: background-color 0.3s, color 0.3s;
     }
-    
-    /* Terminal Header */
-    .terminal-header {
-      background: #001a00;
-      padding: 0.5rem 1rem;
-      display: flex;
-      align-items: center;
-      border-bottom: 1px solid #00ff41;
-    }
-    
-    .traffic-lights {
-      display: flex;
-      gap: 6px;
-    }
-    
-    .traffic-lights span {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      display: inline-block;
-    }
-    
-    .red-btn { background: #ff5f56; }
-    .yellow-btn { background: #ffbd2e; }
-    .green-btn { background: #27c93f; }
-    
-    .title {
-      margin-left: 1rem;
-      flex-grow: 1;
-    }
-    
-    /* Terminal Content */
-    .content {
-      padding: 1.5rem;
-      min-height: 300px;
-    }
-    
-    /* Typing Animation */
-    .typing-animation {
-      border-right: 2px solid #00ff41;
-      white-space: nowrap;
-      overflow: hidden;
-      margin: 0;
-      animation: 
-        typing 3.5s steps(40, end),
-        blink-caret 0.75s step-end infinite;
-    }
-    
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
-    }
-    
-    @keyframes blink-caret {
-      from, to { border-color: transparent }
-      50% { border-color: #00ff41; }
-    }
-    
-    /* Buttons */
-    .button-group {
-      display: flex;
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-    
-    .hack-button {
-      background: #00ff41;
-      color: #000;
-      border: none;
-      padding: 0.8rem 1.5rem;
-      font-family: 'Share Tech Mono', monospace;
-      font-weight: bold;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.3s;
-    }
-    
-    .hack-button:hover {
-      box-shadow: 0 0 15px #00ff41;
-    }
-    
-    .button-loader {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 16px;
-      height: 16px;
-      border: 2px solid #000;
-      border-top-color: transparent;
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-      animation: spin 1s linear infinite;
-      opacity: 0;
-    }
-    
-    .ghost-button {
-      background: transparent;
-      color: #00ff41;
-      border: 1px solid #00ff41;
-      padding: 0.8rem 1.5rem;
-      font-family: 'Share Tech Mono', monospace;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-    
-    .ghost-button:hover {
-      background: rgba(0, 255, 65, 0.1);
-    }
-    
-    @keyframes spin {
-      to { transform: translate(-50%, -50%) rotate(360deg); }
-    }
-    
-    /* Status Bar */
-    .status-bar {
-      display: flex;
-      gap: 1.5rem;
-      margin-top: 2rem;
-      padding-top: 1rem;
-      border-top: 1px dashed #00ff41;
-    }
-    
-    .status-light {
-      width: 10px;
-      height: 10px;
-      background: #ff5555;
-      border-radius: 50%;
-      display: inline-block;
-      margin-right: 6px;
-    }
-    
-    .status-light.online {
-      background: #00ff41;
-      animation: pulse 2s infinite;
-    }
-    
-    @keyframes pulse {
-      0% { opacity: 1; }
-      50% { opacity: 0.5; }
-      100% { opacity: 1; }
-    }
-    
-    /* Footer */
-    .copyright {
-      padding: 0.8rem 1rem;
-      background: #001a00;
-      border-top: 1px solid #00ff41;
-      font-size: 0.8rem;
+
+    /* Header and Hamburger Menu */
+    .header {
       display: flex;
       justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      background-color: #6b46c1;
+      color: white;
     }
-    
-    .access-level {
-      color: #ff00ff;
+
+    .hamburger {
+      font-size: 24px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: white;
     }
-    
-    /* Glitch Effect */
-    .glitch {
-      position: relative;
-      color: #00ff41;
-      font-size: 3rem;
-      text-transform: uppercase;
-      margin: 0;
+
+    .nav-menu {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background-color: #4a3a9b;
+      transition: left 0.3s ease;
+      z-index: 1000;
     }
-    
-    .glitch::before,
-    .glitch::after {
-      content: attr(data-text);
-      position: absolute;
+
+    .nav-menu.active {
+      left: 0;
+    }
+
+    .nav-menu ul {
+      list-style: none;
+      padding: 20px;
+      margin-top: 60px;
+    }
+
+    .nav-menu ul li {
+      margin: 20px 0;
+    }
+
+    .nav-menu ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      display: block;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .nav-menu ul li a:hover {
+      background-color: #5a4ab5;
+    }
+
+    .overlay {
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      z-index: 999;
     }
-    
-    .glitch::before {
-      left: 2px;
-      text-shadow: -2px 0 #ff00ff;
-      clip: rect(44px, 450px, 56px, 0);
-      animation: glitch-anim-1 2s infinite linear alternate-reverse;
+
+    .overlay.active {
+      display: block;
     }
-    
-    .glitch::after {
-      left: -2px;
-      text-shadow: -2px 0 #00ffff;
-      clip: rect(44px, 450px, 56px, 0);
-      animation: glitch-anim-2 2s infinite linear alternate-reverse;
+
+    /* Main Content */
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      text-align: center;
     }
-    
-    @keyframes glitch-anim-1 {
-      0% { clip: rect(61px, 9999px, 52px, 0); }
-      20% { clip: rect(33px, 9999px, 14px, 0); }
-      40% { clip: rect(43px, 9999px, 37px, 0); }
-      60% { clip: rect(23px, 9999px, 66px, 0); }
-      80% { clip: rect(54px, 9999px, 48px, 0); }
-      100% { clip: rect(9px, 9999px, 98px, 0); }
+
+    .welcome {
+      font-size: 26px;
+      margin-bottom: 20px;
+      color: #6b46c1;
     }
-    
-    @keyframes glitch-anim-2 {
-      0% { clip: rect(25px, 9999px, 99px, 0); }
-      20% { clip: rect(3px, 9999px, 6px, 0); }
-      40% { clip: rect(33px, 9999px, 86px, 0); }
-      60% { clip: rect(92px, 9999px, 98px, 0); }
-      80% { clip: rect(73px, 9999px, 92px, 0); }
-      100% { clip: rect(62px, 9999px, 54px, 0); }
+
+    .button {
+      background-color: #6b46c1;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: 10px;
+      transition: background-color 0.3s;
     }
-    
-    /* Output Container */
-    .output {
-      margin: 1.5rem 0;
-      min-height: 100px;
+
+    .button:hover {
+      background-color: #5a38a5;
     }
-    
-    /* Navigation */
-     .nav {
-      display: flex;
-      gap: 1rem; /* Reduced from 1.5rem to fit better */
-      padding: 0.8rem 1rem;
-      background: #001a00;
-      border-bottom: 1px solid #00ff41;
-      flex-wrap: wrap; /* Allows items to wrap if needed */
-      justify-content: center; /* Centers items when wrapped */
+
+    .steps {
+      text-align: left;
+      margin-top: 20px;
+      background: #fff3cd;
+      padding: 15px;
+      border-radius: 5px;
+      display: none;
     }
-    
-    .nav a {
-      color: #00ff41;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      white-space: nowrap; /* Prevents text from breaking */
-      padding: 0.2rem 0.5rem; /* Added some padding */
+
+    .steps.active {
+      display: block;
+    }
+
+    .steps ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .steps li {
+      margin: 10px 0;
+    }
+
+    .toggle-mode {
+      margin-top: 20px;
+    }
+
+    .toggle-mode button {
+      background: none;
+      border: 1px solid #6b46c1;
+      padding: 5px 10px;
+      cursor: pointer;
+      color: #6b46c1;
+      border-radius: 5px;
+    }
+
+    /* Dark Mode */
+    body.dark-mode {
+      background-color: #1a202c;
+      color: #e2e8f0;
+    }
+
+    body.dark-mode .header {
+      background-color: #2d3748;
+    }
+
+    body.dark-mode .nav-menu {
+      background-color: #2d3748;
+    }
+
+    body.dark-mode .steps {
+      background: #2d3748;
+    }
+
+    body.dark-mode .button {
+      background-color: #a0aec0;
+    }
+
+    body.dark-mode .button:hover {
+      background-color: #718096;
+    }
+
+    body.dark-mode .welcome {
+      color: #a0aec0;
+    }
+
+    body.dark-mode .toggle-mode button {
+      border-color: #a0aec0;
+      color: #a0aec0;
     }
   </style>
 </head>
 <body>
-  <!-- Main Terminal -->
-  <div class="terminal">
-    <!-- Terminal Header -->
-    <div class="terminal-header">
-      <div class="traffic-lights">
-        <span class="red-btn"></span>
-        <span class="yellow-btn"></span>
-        <span class="green-btn"></span>
-      </div>
-      <span class="title">home.exe</span>
-      <div class="terminal-time" id="terminalTime">00:00:00</div>
-    </div>
-    
-    <!-- Navigation -->
-    <nav class="nav">
-      <a href="A.html" class="active">
-        <span class="nav-icon"></span> HOME
-      </a>
-      <a href="about.html">
-        <span class="nav-icon"></span> ABOUT
-      </a>
-      <a href="https://apkmody.com/">
-        <span class="nav-icon"></span> APK MODS
-      </a>
-       <a href="anime.html">
-        <span class="nav-icon"></span> ANIME SITES
-      <a href="services.html">
-        <span class="nav-icon"></span> SERVICES
-      </a>
-      <a href="contact.html">
-        <span class="nav-icon"></span> CONTACT
-      </a>
-    </nav>
+  <!-- Header with Hamburger Menu -->
+  <div class="header">
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+    <div class="logo">CIPHERPREMIUM</div>
+  </div>
 
-    <!-- Main Content -->
-    <main class="content">
-      <!-- Animated Header -->
-      <div class="header-container">
-        <h1 class="glitch" data-text="CIPHERTECH">CIPHERTECH</h1>
+  <!-- Navigation Menu -->
+  <nav class="nav-menu" id="navMenu">
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#activate">Activate</a></li>
+      <li><a href="#support">Support</a></li>
+      <li><a href="#plans">Premium Plans</a></li>
+    </ul>
+  </nav>
+  <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="welcome">Welcome, Cipher User 👋</div>
+    <button class="button" onclick="toggleSteps()">FREE Click Here to Activate</button>
+    <span>ChatGPT Plus</span>
+    <div class="steps" id="steps">
+      <h3>Steps to Activate Free ChatGPT Plus</h3>
+      <ul>
+        <li>1. Visit chatgpt.com and click Log in.</li>
+        <li>2. Sign in with the credentials below:</li>
+        <li>Email → oxaamcgn257@oxaam.com</li>
+        <li>Password → oxaam1229962</li>
+        <li>3. If a verification code is requested, use the link below.</li>
+        <li><a href="https://www.oxaam.com/cgcode2.php">https://www.oxaam.com/cgcode2.php</a></li>
+      </ul>
+      <div class="alert">
+        <ul>
+          <li>⚠ After logging in, select the oxaam.com workspace to enable premium features.</li>
+          <li>⚠ This is a public account; occasional hiccups are normal.</li>
+          <li>⚠ If you'd like a premium ChatGPT account with zero disruptions, our premium plans are available at very affordable rates.</li>
+          <li>⚠ Do not invite anyone, otherwise your Oxaam account may be banned.</li>
+          <li>⚠ If the credentials or link don't work, check back in a few hours.</li>
+        </ul>
       </div>
-      
-      <!-- Interactive Terminal Output -->
-      <div class="output" id="output">
-        <p class="typing-animation">$ Initializing secure connection...</p>
-        <p class="typing-animation">$ Establishing encrypted tunnel...</p>
-        <p class="typing-animation">$ Welcome back, ADMIN</p>
-      </div>
-      
-      <!-- Animated Buttons -->
-      <div class="button-group">
-        <button id="hackBtn" class="hack-button">
-          <span class="button-text">INITIATE SYSTEM SCAN</span>
-          <span class="button-loader"></span>
-        </button>
-        <button id="clearBtn" class="ghost-button">
-          CLEAR TERMINAL
-        </button>
-      </div>
-      
-      <!-- Status Bar -->
-      <div class="status-bar">
-        <span class="status-item" id="connectionStatus">
-          <span class="status-light"></span> SECURE CONNECTION
-        </span>
-        <span class="status-item">
-          <span class="status-light online"></span> SERVER ONLINE
-        </span>
-      </div>
-    </main>
-    
-    <!-- Footer -->
-    <footer class="copyright">
-      <span id="copyrightYear"></span> | CIPHERTECH NETWORKS | ACCESS LEVEL: <span class="access-level">ROOT</span>
-    </footer>
+    </div>
+    <div class="toggle-mode">
+      <button onclick="toggleMode()">Toggle Dark Mode</button>
+    </div>
   </div>
 
   <script>
-    // System Scan Functionality
-    document.getElementById('hackBtn').addEventListener('click', function() {
-      const btn = this;
-      const output = document.getElementById('output');
-      const loader = btn.querySelector('.button-loader');
-      const btnText = btn.querySelector('.button-text');
-      
-      // Show loading state
-      btnText.textContent = "SCANNING SYSTEMS";
-      loader.style.opacity = '1';
-      btn.disabled = true;
-      
-      // Clear previous output
-      output.innerHTML = '';
-      
-      // System scan messages
-      const messages = [
-        "$ Initiating deep system scan...",
-        "$ Analyzing network topology...",
-        "$ Bypassing firewall protections...",
-        "$ Accessing secure subsystems...",
-        "$ Locating vulnerabilities...",
-        "$ Compiling threat assessment...",
-        "$ Scan complete - 3 critical vulnerabilities found"
-      ];
-      
-      // Display messages with typing animation
-      let delay = 0;
-      messages.forEach((msg, index) => {
-        setTimeout(() => {
-          const p = document.createElement('p');
-          p.className = 'typing-animation';
-          p.textContent = msg;
-          output.appendChild(p);
-          
-          // Scroll to bottom
-          output.scrollTop = output.scrollHeight;
-          
-          // Final message
-          if (index === messages.length - 1) {
-            setTimeout(() => {
-              btnText.textContent = "SCAN COMPLETE";
-              loader.style.opacity = '0';
-              btn.disabled = false;
-              
-              // Reset button after delay
-              setTimeout(() => {
-                btnText.textContent = "INITIATE SYSTEM SCAN";
-              }, 2000);
-            }, 1000);
-          }
-        }, delay);
-        
-        delay += 2000; // 2 second delay between messages
-      });
-    });
-    
-    // Clear Terminal Functionality
-    document.getElementById('clearBtn').addEventListener('click', function() {
-      document.getElementById('output').innerHTML = '';
-    });
-    
-    // Update Copyright Year
-    document.getElementById('copyrightYear').textContent = new Date().getFullYear();
-    
-    // Update Terminal Time
-    function updateTerminalTime() {
-      const now = new Date();
-      const timeString = now.toLocaleTimeString('en-US', {
-        hour12: false,
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
-      });
-      document.getElementById('terminalTime').textContent = timeString;
+    // Toggle Hamburger Menu
+    function toggleMenu() {
+      const navMenu = document.getElementById('navMenu');
+      const overlay = document.getElementById('overlay');
+      navMenu.classList.toggle('active');
+      overlay.classList.toggle('active');
     }
-    
-    setInterval(updateTerminalTime, 1000);
-    updateTerminalTime();
+
+    // Toggle Steps
+    function toggleSteps() {
+      const steps = document.getElementById('steps');
+      steps.classList.toggle('active');
+    }
+
+    // Toggle Dark Mode
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+    }
   </script>
 </body>
 </html>
