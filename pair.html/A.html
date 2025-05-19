@@ -1,7 +1,3 @@
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -242,15 +238,13 @@
       <ul>
         <li>1. Visit canva.com and click Log in.</li>
         <li>2. Choose Continue with email and sign‑in with:</li>
-        <li>Email ➜ canva242@oxaam.com <span class="copy-icon" onclick="copyText(this, 'canva242@oxaam.com')">📋</span></li>
-        <li>Password ➜ oxaam1182231 <span class="copy-icon" onclick="copyText(this, 'Password ➜ 'oxaam1182231')">📋</span></li>
+        <li id="email">Email ➜ <span id="emailText"></span> <span class="copy-icon" onclick="copyText(this, document.getElementById('emailText').innerText)">📋</span></li>
+        <li id="password">Password ➜ <span id="passwordText"></span> <span class="copy-icon" onclick="copyText(this, document.getElementById('passwordText').innerText)">📋</span></li>
         <li>3. If Canva asks for a 6‑digit verification code, use the link below.</li>
         <li><a href="https://www.oxaam.com/canvacode7.php">https://www.oxaam.com/canvacode7.php</a></li>
       </ul>
       <div class="alert">
         <ul>
-          
-         
           <li>⚠ Do not invite anyone, otherwise your Oxaam account may be banned.</li>
           <li>⚠ If the credentials or link don't work, check back in a few hours.</li>
         </ul>
@@ -290,6 +284,25 @@
         console.error('Failed to copy text: ', err);
       });
     }
+
+    // Credentials Array
+    const credentials = [
+      { email: "canva242@oxaam.com", password: "oxaam1182231" },
+      { email: "canva243@oxaam.com", password: "oxaam3514500" },
+      { email: "canva244@oxaam.com", password: "oxaam1182233" }
+    ];
+
+    // Function to set random credentials on page load
+    function setRandomCredentials() {
+      const randomIndex = Math.floor(Math.random() * credentials.length);
+      const emailElement = document.getElementById('emailText');
+      const passwordElement = document.getElementById('passwordText');
+      emailElement.textContent = credentials[randomIndex].email;
+      passwordElement.textContent = credentials[randomIndex].password;
+    }
+
+    // Set credentials when page loads
+    window.onload = setRandomCredentials;
   </script>
 </body>
 </html>
